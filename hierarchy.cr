@@ -19,21 +19,26 @@ class EmacsHierarchy
         walk(x, file, depth)
       end
     elsif temp = node.as_h?
-      file.puts "*#{"*" * depth} #{temp["name"]}"
-      temp.each do |x|
-        unless(x[0] == "name" || x[0] == "sub_types" || x[0] == "instance_vars")
-          file.puts "#{" " * depth}  #{x[0]}: #{x[1]}"
-        end
-      end
+      process_object(temp, file, depth)
       if iv = temp["instance_vars"]?
-        file.puts " #{" " * depth} - instance_vars:"
-        process_ivars iv, file, depth + 1
+        process_ivars iv, file, depth
       end
       walk temp["sub_types"], file, depth + 1
     end
   end
 
+  def process_object(obj, file, depth)
+    file.puts "*#{"*" * depth} #{obj["name"]}"
+    obj.each do |x|
+      unless(x[0] == "name" || x[0] == "sub_types" || x[0] == "instance_vars")
+        file.puts "#{" " * depth}  #{x[0]}: #{x[1]}"
+      end
+    end
+  end
+
   def process_ivars(node, file, depth)
+    file.puts " #{" " * depth} - instance_vars:"
+    depth += 1
     if ivs = node.as_a?
       ivs.each do |iv|
         if properties = iv.as_h?
