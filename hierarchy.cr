@@ -30,7 +30,9 @@ class EmacsHierarchy
   def process_object(obj, file, depth)
     file.puts "*#{"*" * depth} #{obj["name"]}"
     obj.each do |x|
-      unless(x[0] == "name" || x[0] == "sub_types" || x[0] == "instance_vars")
+      case x[0]
+      when "name", "sub_types", "instance_vars"
+      else
         file.puts "#{" " * depth}  #{x[0]}: #{x[1]}"
       end
     end
