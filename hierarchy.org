@@ -1,0 +1,2215 @@
+* Object
+  kind: class
+  size_in_bytes: 4
+** Reference
+   kind: class
+   size_in_bytes: 4
+*** Array(T)
+    kind: class
+    - instance_vars:
+      @size : @size
+      @capacity : @capacity
+      @buffer : @buffer
+*** Array::CombinationIterator(T)
+    kind: class
+    - instance_vars:
+      @size : @size
+      @n : @n
+      @copy : @copy
+      @pool : @pool
+      @indices : @indices
+      @stop : @stop
+      @i : @i
+      @first : @first
+      @reuse : @reuse
+*** Array::PermutationIterator(T)
+    kind: class
+    - instance_vars:
+      @array : @array
+      @size : @size
+      @n : @n
+      @cycles : @cycles
+      @pool : @pool
+      @stop : @stop
+      @i : @i
+      @first : @first
+      @reuse : @reuse
+*** Array::RepeatedCombinationIterator(T)
+    kind: class
+    - instance_vars:
+      @size : @size
+      @n : @n
+      @copy : @copy
+      @indices : @indices
+      @pool : @pool
+      @stop : @stop
+      @i : @i
+      @first : @first
+      @reuse : @reuse
+*** Box(T)
+    kind: class
+    - instance_vars:
+      @object : @object
+*** Channel(T)
+    kind: class
+    - instance_vars:
+      @closed : @closed
+      @senders : @senders
+      @receivers : @receivers
+**** Channel::Buffered(T)
+     kind: class
+     - instance_vars:
+       @capacity : @capacity
+       @queue : @queue
+**** Channel::Unbuffered(T)
+     kind: class
+     - instance_vars:
+       @sender : @sender
+       @has_value : @has_value
+       @value : @value
+*** Concurrent::Future(R)
+    kind: class
+    - instance_vars:
+      @value : @value
+      @error : @error
+      @delay : @delay
+      @block : @block
+      @state : @state
+      @channel : @channel
+      @cancel_msg : @cancel_msg
+*** Crystal::ASTNode
+    kind: class
+    size_in_bytes: 24
+    - instance_vars:
+      @location : (Crystal::Location | Nil) (8 bytes)
+      @end_location : (Crystal::Location | Nil) (8 bytes)
+**** Crystal::Alias
+     kind: class
+     size_in_bytes: 56
+     - instance_vars:
+       @name : String (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::Annotation
+     kind: class
+     size_in_bytes: 56
+     - instance_vars:
+       @path : Crystal::Path (8 bytes)
+       @args : Array(Crystal::ASTNode) (8 bytes)
+       @named_args : (Array(Crystal::NamedArgument) | Nil) (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+**** Crystal::AnnotationDef
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @name : Crystal::Path (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+**** Crystal::Arg
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @name : String (8 bytes)
+       @external_name : String (8 bytes)
+       @default_value : (Crystal::ASTNode | Nil) (8 bytes)
+       @restriction : (Crystal::ASTNode | Nil) (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+**** Crystal::ArrayLiteral
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @elements : Array(Crystal::ASTNode) (8 bytes)
+       @of : (Crystal::ASTNode | Nil) (8 bytes)
+       @name : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::Asm
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @text : String (8 bytes)
+       @output : (Crystal::AsmOperand | Nil) (8 bytes)
+       @inputs : (Array(Crystal::AsmOperand) | Nil) (8 bytes)
+       @clobbers : (Array(String) | Nil) (8 bytes)
+       @volatile : Bool (0 bytes)
+       @alignstack : Bool (0 bytes)
+       @intel : Bool (0 bytes)
+**** Crystal::AsmOperand
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @constraint : String (8 bytes)
+       @exp : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Assign
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @target : Crystal::ASTNode+ (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+**** Crystal::BinaryOp
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @left : Crystal::ASTNode+ (8 bytes)
+       @right : Crystal::ASTNode+ (8 bytes)
+***** Crystal::And
+      kind: class
+      size_in_bytes: 40
+***** Crystal::Or
+      kind: class
+      size_in_bytes: 40
+**** Crystal::Block
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @args : Array(Crystal::Var) (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @call : (Crystal::Call | Nil) (8 bytes)
+       @splat_index : (Int32 | Nil) (16 bytes)
+**** Crystal::BoolLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @value : Bool (0 bytes)
+**** Crystal::CStructOrUnionDef
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @name : String (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @union : Bool (0 bytes)
+**** Crystal::Call
+     kind: class
+     size_in_bytes: 104
+     - instance_vars:
+       @obj : (Crystal::ASTNode | Nil) (8 bytes)
+       @name : String (8 bytes)
+       @args : Array(Crystal::ASTNode) (8 bytes)
+       @block : (Crystal::Block | Nil) (8 bytes)
+       @block_arg : (Crystal::ASTNode | Nil) (8 bytes)
+       @named_args : (Array(Crystal::NamedArgument) | Nil) (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @global : Bool (0 bytes)
+       @has_parentheses : Bool (0 bytes)
+       @name_size : Int32 (4 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+       @expansion : Bool (0 bytes)
+**** Crystal::Case
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @cond : (Crystal::ASTNode | Nil) (8 bytes)
+       @whens : Array(Crystal::When) (8 bytes)
+       @else : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::Cast
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @obj : Crystal::ASTNode+ (8 bytes)
+       @to : Crystal::ASTNode+ (8 bytes)
+**** Crystal::CharLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @value : Char (4 bytes)
+**** Crystal::ClassDef
+     kind: class
+     size_in_bytes: 96
+     - instance_vars:
+       @name : Crystal::Path (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @superclass : (Crystal::ASTNode | Nil) (8 bytes)
+       @type_vars : (Array(String) | Nil) (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @splat_index : (Int32 | Nil) (16 bytes)
+       @abstract : Bool (0 bytes)
+       @struct : Bool (0 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::ClassVar
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : String (8 bytes)
+**** Crystal::ControlExpression
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @exp : (Crystal::ASTNode | Nil) (8 bytes)
+***** Crystal::Break
+      kind: class
+      size_in_bytes: 32
+***** Crystal::Next
+      kind: class
+      size_in_bytes: 32
+***** Crystal::Return
+      kind: class
+      size_in_bytes: 32
+**** Crystal::Def
+     kind: class
+     size_in_bytes: 144
+     - instance_vars:
+       @free_vars : (Array(String) | Nil) (8 bytes)
+       @receiver : (Crystal::ASTNode | Nil) (8 bytes)
+       @name : String (8 bytes)
+       @args : Array(Crystal::Arg) (8 bytes)
+       @double_splat : (Crystal::Arg | Nil) (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @block_arg : (Crystal::Arg | Nil) (8 bytes)
+       @return_type : (Crystal::ASTNode | Nil) (8 bytes)
+       @yields : (Int32 | Nil) (16 bytes)
+       @splat_index : (Int32 | Nil) (16 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @macro_def : Bool (0 bytes)
+       @abstract : Bool (0 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+       @calls_super : Bool (0 bytes)
+       @calls_initialize : Bool (0 bytes)
+       @calls_previous_def : Bool (0 bytes)
+       @uses_block_arg : Bool (0 bytes)
+       @assigns_special_var : Bool (0 bytes)
+**** Crystal::EnumDef
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @name : Crystal::Path (8 bytes)
+       @members : Array(Crystal::ASTNode) (8 bytes)
+       @base_type : (Crystal::ASTNode | Nil) (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::ExceptionHandler
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @body : Crystal::ASTNode+ (8 bytes)
+       @rescues : (Array(Crystal::Rescue) | Nil) (8 bytes)
+       @else : (Crystal::ASTNode | Nil) (8 bytes)
+       @ensure : (Crystal::ASTNode | Nil) (8 bytes)
+       @implicit : Bool (0 bytes)
+       @suffix : Bool (0 bytes)
+**** Crystal::Expressions
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @expressions : Array(Crystal::ASTNode) (8 bytes)
+       @keyword : (Symbol | Nil) (16 bytes)
+**** Crystal::Extend
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : Crystal::ASTNode+ (8 bytes)
+**** Crystal::ExternalVar
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @name : String (8 bytes)
+       @type_spec : Crystal::ASTNode+ (8 bytes)
+       @real_name : (String | Nil) (8 bytes)
+**** Crystal::FunDef
+     kind: class
+     size_in_bytes: 80
+     - instance_vars:
+       @name : String (8 bytes)
+       @args : Array(Crystal::Arg) (8 bytes)
+       @return_type : (Crystal::ASTNode | Nil) (8 bytes)
+       @body : (Crystal::ASTNode | Nil) (8 bytes)
+       @real_name : String (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @varargs : Bool (0 bytes)
+**** Crystal::Generic
+     kind: class
+     size_in_bytes: 56
+     - instance_vars:
+       @name : Crystal::ASTNode+ (8 bytes)
+       @type_vars : Array(Crystal::ASTNode) (8 bytes)
+       @named_args : (Array(Crystal::NamedArgument) | Nil) (8 bytes)
+       @question : Bool (0 bytes)
+**** Crystal::Global
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : String (8 bytes)
+**** Crystal::HashLiteral
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @entries : Array(Crystal::HashLiteral::Entry) (8 bytes)
+       @of : (Crystal::HashLiteral::Entry | Nil) (24 bytes)
+       @name : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::If
+     kind: class
+     size_in_bytes: 56
+     - instance_vars:
+       @cond : Crystal::ASTNode+ (8 bytes)
+       @then : Crystal::ASTNode+ (8 bytes)
+       @else : Crystal::ASTNode+ (8 bytes)
+       @ternary : Bool (0 bytes)
+**** Crystal::ImplicitObj
+     kind: class
+     size_in_bytes: 24
+**** Crystal::Include
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : Crystal::ASTNode+ (8 bytes)
+**** Crystal::InstanceVar
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : String (8 bytes)
+**** Crystal::IsA
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @obj : Crystal::ASTNode+ (8 bytes)
+       @const : Crystal::ASTNode+ (8 bytes)
+       @nil_check : Bool (0 bytes)
+**** Crystal::LibDef
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @name : String (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::Macro
+     kind: class
+     size_in_bytes: 96
+     - instance_vars:
+       @name : String (8 bytes)
+       @args : Array(Crystal::Arg) (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @double_splat : (Crystal::Arg | Nil) (8 bytes)
+       @block_arg : (Crystal::Arg | Nil) (8 bytes)
+       @splat_index : (Int32 | Nil) (16 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::MacroExpression
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @exp : Crystal::ASTNode+ (8 bytes)
+       @output : Bool (0 bytes)
+**** Crystal::MacroFor
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @vars : Array(Crystal::Var) (8 bytes)
+       @exp : Crystal::ASTNode+ (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+**** Crystal::MacroIf
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @cond : Crystal::ASTNode+ (8 bytes)
+       @then : Crystal::ASTNode+ (8 bytes)
+       @else : Crystal::ASTNode+ (8 bytes)
+**** Crystal::MacroLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @value : String (8 bytes)
+**** Crystal::MacroVar
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @name : String (8 bytes)
+       @exps : (Array(Crystal::ASTNode) | Nil) (8 bytes)
+**** Crystal::MagicConstant
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : Symbol (4 bytes)
+**** Crystal::Metaclass
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : Crystal::ASTNode+ (8 bytes)
+**** Crystal::ModuleDef
+     kind: class
+     size_in_bytes: 88
+     - instance_vars:
+       @name : Crystal::Path (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+       @type_vars : (Array(String) | Nil) (8 bytes)
+       @splat_index : (Int32 | Nil) (16 bytes)
+       @name_column_number : Int32 (4 bytes)
+       @doc : (String | Nil) (8 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::MultiAssign
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @targets : Array(Crystal::ASTNode) (8 bytes)
+       @values : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::NamedArgument
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @name : String (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+**** Crystal::NamedTupleLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @entries : Array(Crystal::NamedTupleLiteral::Entry) (8 bytes)
+**** Crystal::NilLiteral
+     kind: class
+     size_in_bytes: 24
+**** Crystal::NilableCast
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @obj : Crystal::ASTNode+ (8 bytes)
+       @to : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Nop
+     kind: class
+     size_in_bytes: 24
+**** Crystal::NumberLiteral
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @value : String (8 bytes)
+       @kind : Symbol (4 bytes)
+**** Crystal::OpAssign
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @target : Crystal::ASTNode+ (8 bytes)
+       @op : String (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Path
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @names : Array(String) (8 bytes)
+       @global : Bool (0 bytes)
+       @name_size : Int32 (4 bytes)
+       @visibility : Crystal::Visibility (1 bytes)
+**** Crystal::ProcLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @def : Crystal::Def (8 bytes)
+**** Crystal::ProcNotation
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @inputs : (Array(Crystal::ASTNode) | Nil) (8 bytes)
+       @output : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::ProcPointer
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @obj : (Crystal::ASTNode | Nil) (8 bytes)
+       @name : String (8 bytes)
+       @args : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::RangeLiteral
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @from : Crystal::ASTNode+ (8 bytes)
+       @to : Crystal::ASTNode+ (8 bytes)
+       @exclusive : Bool (0 bytes)
+**** Crystal::ReadInstanceVar
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @obj : Crystal::ASTNode+ (8 bytes)
+       @name : String (8 bytes)
+**** Crystal::RegexLiteral
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @value : Crystal::ASTNode+ (8 bytes)
+       @options : Regex::Options (4 bytes)
+**** Crystal::Require
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @string : String (8 bytes)
+**** Crystal::Rescue
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @body : Crystal::ASTNode+ (8 bytes)
+       @types : (Array(Crystal::ASTNode) | Nil) (8 bytes)
+       @name : (String | Nil) (8 bytes)
+**** Crystal::RespondsTo
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @obj : Crystal::ASTNode+ (8 bytes)
+       @name : String (8 bytes)
+**** Crystal::Select
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @whens : Array(Crystal::Select::When) (8 bytes)
+       @else : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::Self
+     kind: class
+     size_in_bytes: 24
+**** Crystal::StringInterpolation
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @expressions : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::StringLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @value : String (8 bytes)
+**** Crystal::SymbolLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @value : String (8 bytes)
+**** Crystal::TupleLiteral
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @elements : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::TypeDeclaration
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @var : Crystal::ASTNode+ (8 bytes)
+       @declared_type : Crystal::ASTNode+ (8 bytes)
+       @value : (Crystal::ASTNode | Nil) (8 bytes)
+**** Crystal::TypeDef
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @name : String (8 bytes)
+       @type_spec : Crystal::ASTNode+ (8 bytes)
+       @name_column_number : Int32 (4 bytes)
+**** Crystal::TypeOf
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @expressions : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::UnaryExpression
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @exp : Crystal::ASTNode+ (8 bytes)
+***** Crystal::DoubleSplat
+      kind: class
+      size_in_bytes: 32
+***** Crystal::InstanceSizeOf
+      kind: class
+      size_in_bytes: 32
+***** Crystal::MacroVerbatim
+      kind: class
+      size_in_bytes: 32
+***** Crystal::Not
+      kind: class
+      size_in_bytes: 32
+***** Crystal::Out
+      kind: class
+      size_in_bytes: 32
+***** Crystal::PointerOf
+      kind: class
+      size_in_bytes: 32
+***** Crystal::SizeOf
+      kind: class
+      size_in_bytes: 32
+***** Crystal::Splat
+      kind: class
+      size_in_bytes: 32
+**** Crystal::Underscore
+     kind: class
+     size_in_bytes: 24
+**** Crystal::UninitializedVar
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @var : Crystal::ASTNode+ (8 bytes)
+       @declared_type : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Union
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @types : Array(Crystal::ASTNode) (8 bytes)
+**** Crystal::Unless
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @cond : Crystal::ASTNode+ (8 bytes)
+       @then : Crystal::ASTNode+ (8 bytes)
+       @else : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Until
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @cond : Crystal::ASTNode+ (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Var
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @name : String (8 bytes)
+**** Crystal::VisibilityModifier
+     kind: class
+     size_in_bytes: 48
+     - instance_vars:
+       @modifier : Crystal::Visibility (1 bytes)
+       @exp : Crystal::ASTNode+ (8 bytes)
+       @doc : (String | Nil) (8 bytes)
+**** Crystal::When
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @conds : Array(Crystal::ASTNode) (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+**** Crystal::While
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @cond : Crystal::ASTNode+ (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Yield
+     kind: class
+     size_in_bytes: 40
+     - instance_vars:
+       @exps : Array(Crystal::ASTNode) (8 bytes)
+       @scope : (Crystal::ASTNode | Nil) (8 bytes)
+*** Crystal::Lexer
+    kind: class
+    size_in_bytes: 152
+    - instance_vars:
+      @doc_enabled : Bool (0 bytes)
+      @comments_enabled : Bool (0 bytes)
+      @count_whitespace : Bool (0 bytes)
+      @wants_raw : Bool (0 bytes)
+      @slash_is_regex : Bool (0 bytes)
+      @reader : Char::Reader (48 bytes)
+      @token : Crystal::Token (8 bytes)
+      @line_number : Int32 (4 bytes)
+      @column_number : Int32 (4 bytes)
+      @filename : (Crystal::VirtualFile | String | Nil) (8 bytes)
+      @stacked_filename : (Crystal::VirtualFile | String | Nil) (8 bytes)
+      @token_end_location : (Crystal::Location | Nil) (8 bytes)
+      @string_pool : StringPool (8 bytes)
+      @heredocs : Array(Tuple(Crystal::Token::DelimiterState, Crystal::Lexer::HeredocItem)) (8 bytes)
+      @wants_regex : Bool (0 bytes)
+      @delimiter_state_stack : Array(Crystal::Token::DelimiterState) (8 bytes)
+      @macro_curly_count : Int32 (4 bytes)
+      @stacked : Bool (0 bytes)
+      @stacked_line_number : Int32 (4 bytes)
+      @stacked_column_number : Int32 (4 bytes)
+**** Crystal::Parser
+     kind: class
+     size_in_bytes: 280
+     - instance_vars:
+       @visibility : (Crystal::Visibility | Nil) (16 bytes)
+       @def_nest : Int32 (4 bytes)
+       @type_nest : Int32 (4 bytes)
+       @wants_doc : Bool (0 bytes)
+       @block_arg_name : (String | Nil) (8 bytes)
+       @def_vars : Array(Set(String)) (8 bytes)
+       @temp_token : Crystal::Token (8 bytes)
+       @unclosed_stack : Array(Crystal::Parser::Unclosed) (8 bytes)
+       @calls_super : Bool (0 bytes)
+       @calls_initialize : Bool (0 bytes)
+       @calls_previous_def : Bool (0 bytes)
+       @uses_block_arg : Bool (0 bytes)
+       @is_macro_def : Bool (0 bytes)
+       @assigns_special_var : Bool (0 bytes)
+       @call_args_nest : Int32 (4 bytes)
+       @block_arg_count : Int32 (4 bytes)
+       @in_macro_expression : Bool (0 bytes)
+       @stop_on_yield : Int32 (4 bytes)
+       @inside_c_struct : Bool (0 bytes)
+       @no_type_declaration : Int32 (4 bytes)
+       @consuming_heredocs : Bool (0 bytes)
+       @inside_interpolation : Bool (0 bytes)
+       @stop_on_do : Bool (0 bytes)
+       @assigned_vars : Array(String) (8 bytes)
+       @yields : (Int32 | Nil) (16 bytes)
+*** Crystal::Location
+    kind: class
+    size_in_bytes: 24
+    - instance_vars:
+      @filename : (Crystal::VirtualFile | String | Nil) (8 bytes)
+      @line_number : Int32 (4 bytes)
+      @column_number : Int32 (4 bytes)
+*** Crystal::Token
+    kind: class
+    size_in_bytes: 232
+    - instance_vars:
+      @type : Symbol (4 bytes)
+      @value : (Char | String | Symbol | Nil) (16 bytes)
+      @number_kind : Symbol (4 bytes)
+      @line_number : Int32 (4 bytes)
+      @column_number : Int32 (4 bytes)
+      @filename : (Crystal::VirtualFile | String | Nil) (8 bytes)
+      @delimiter_state : Crystal::Token::DelimiterState (56 bytes)
+      @macro_state : Crystal::Token::MacroState (88 bytes)
+      @passed_backslash_newline : Bool (0 bytes)
+      @doc_buffer : (IO::Memory | Nil) (8 bytes)
+      @raw : String (8 bytes)
+      @start : Int32 (4 bytes)
+      @location : (Crystal::Location | Nil) (8 bytes)
+*** Crystal::Transformer
+    kind: class
+    size_in_bytes: 4
+*** Crystal::VirtualFile
+    kind: class
+    size_in_bytes: 32
+    - instance_vars:
+      @macro : Crystal::Macro (8 bytes)
+      @source : String (8 bytes)
+      @expanded_location : (Crystal::Location | Nil) (8 bytes)
+*** Crystal::Visitor
+    kind: class
+    size_in_bytes: 4
+**** Crystal::ToSVisitor
+     kind: class
+     size_in_bytes: 32
+     - instance_vars:
+       @str : IO+ (8 bytes)
+       @emit_loc_pragma : Bool (0 bytes)
+       @emit_doc : Bool (0 bytes)
+       @indent : Int32 (4 bytes)
+       @inside_macro : Int32 (4 bytes)
+       @inside_lib : Bool (0 bytes)
+*** Deque(T)
+    kind: class
+    - instance_vars:
+      @start : @start
+      @size : @size
+      @capacity : @capacity
+      @buffer : @buffer
+*** Dir
+    kind: class
+    size_in_bytes: 32
+    - instance_vars:
+      @path : String (8 bytes)
+      @dir : Pointer(LibC::DIR) (8 bytes)
+      @closed : Bool (0 bytes)
+*** Exception
+    kind: class
+    size_in_bytes: 48
+    - instance_vars:
+      @message : (String | Nil) (8 bytes)
+      @cause : (Exception | Nil) (8 bytes)
+      @callstack : (CallStack | Nil) (24 bytes)
+**** ArgumentError
+     kind: class
+     size_in_bytes: 48
+**** Base64::Error
+     kind: class
+     size_in_bytes: 48
+**** Channel::ClosedError
+     kind: class
+     size_in_bytes: 48
+**** Concurrent::CanceledError
+     kind: class
+     size_in_bytes: 48
+**** ConcurrentExecutionException
+     kind: class
+     size_in_bytes: 48
+**** Crystal::Exception
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @filename : (Crystal::VirtualFile | String | Nil) (8 bytes)
+       @color : Bool (0 bytes)
+***** Crystal::LocationlessException
+      kind: class
+      size_in_bytes: 64
+***** Crystal::SyntaxException
+      kind: class
+      size_in_bytes: 88
+      - instance_vars:
+        @line_number : Int32 (4 bytes)
+        @column_number : Int32 (4 bytes)
+        @size : (Int32 | Nil) (16 bytes)
+**** Debug::ELF::Error
+     kind: class
+     size_in_bytes: 48
+**** DivisionByZeroError
+     kind: class
+     size_in_bytes: 48
+**** Enumerable::EmptyError
+     kind: class
+     size_in_bytes: 48
+**** Errno
+     kind: class
+     size_in_bytes: 56
+     - instance_vars:
+       @errno : Int32 (4 bytes)
+**** File::BadPatternError
+     kind: class
+     size_in_bytes: 48
+**** IO::Error
+     kind: class
+     size_in_bytes: 48
+***** IO::EOFError
+      kind: class
+      size_in_bytes: 48
+**** IO::Timeout
+     kind: class
+     size_in_bytes: 48
+**** IndexError
+     kind: class
+     size_in_bytes: 48
+**** InvalidByteSequenceError
+     kind: class
+     size_in_bytes: 48
+**** KeyError
+     kind: class
+     size_in_bytes: 48
+**** NotImplementedError
+     kind: class
+     size_in_bytes: 48
+**** Time::FloatingTimeConversionError
+     kind: class
+     size_in_bytes: 48
+**** Time::Format::Error
+     kind: class
+     size_in_bytes: 48
+**** Time::Location::InvalidLocationNameError
+     kind: class
+     size_in_bytes: 64
+     - instance_vars:
+       @name : String (8 bytes)
+       @source : (String | Nil) (8 bytes)
+**** Time::Location::InvalidTZDataError
+     kind: class
+     size_in_bytes: 48
+**** Time::Location::InvalidTimezoneOffsetError
+     kind: class
+     size_in_bytes: 48
+**** TypeCastError
+     kind: class
+     size_in_bytes: 48
+*** Fiber
+    kind: class
+    size_in_bytes: 104
+    - instance_vars:
+      @stack : Pointer(Void) (8 bytes)
+      @resume_event : (Event::Event | Nil) (24 bytes)
+      @stack_top : Pointer(Void) (8 bytes)
+      @stack_bottom : Pointer(Void) (8 bytes)
+      @next_fiber : (Fiber | Nil) (8 bytes)
+      @prev_fiber : (Fiber | Nil) (8 bytes)
+      @name : (String | Nil) (8 bytes)
+      @proc : (Proc(Nil) | Proc(Void)) (24 bytes)
+*** Hash(K, V)
+    kind: class
+    - instance_vars:
+      @size : @size
+      @buckets_size : @buckets_size
+      @first : @first
+      @last : @last
+      @block : @block
+      @buckets : @buckets
+*** Hash::Entry(K, V)
+    kind: class
+    - instance_vars:
+      @key : @key
+      @value : @value
+      @next : @next
+      @fore : @fore
+      @back : @back
+*** Hash::EntryIterator(K, V)
+    kind: class
+    - instance_vars:
+      @hash : @hash
+      @current : @current
+*** Hash::KeyIterator(K, V)
+    kind: class
+    - instance_vars:
+      @hash : @hash
+      @current : @current
+*** Hash::ValueIterator(K, V)
+    kind: class
+    - instance_vars:
+      @hash : @hash
+      @current : @current
+*** IO
+    kind: class
+    size_in_bytes: 56
+    - instance_vars:
+      @encoding : (IO::EncodingOptions | Nil) (32 bytes)
+      @encoder : (IO::Encoder | Nil) (8 bytes)
+      @decoder : (IO::Decoder | Nil) (8 bytes)
+**** File::PReader
+     kind: class
+     size_in_bytes: 120
+     - instance_vars:
+       @in_buffer_rem : Slice(UInt8) (16 bytes)
+       @out_count : Int32 (4 bytes)
+       @sync : Bool (0 bytes)
+       @flush_on_newline : Bool (0 bytes)
+       @in_buffer : (Pointer(UInt8) | Nil) (8 bytes)
+       @out_buffer : (Pointer(UInt8) | Nil) (8 bytes)
+       @closed : Bool (0 bytes)
+       @fd : Int32 (4 bytes)
+       @offset : Int32 (4 bytes)
+       @bytesize : Int32 (4 bytes)
+       @pos : Int32 (4 bytes)
+**** IO::ARGF
+     kind: class
+     size_in_bytes: 96
+     - instance_vars:
+       @path : (String | Nil) (8 bytes)
+       @current_io : (IO | Nil) (8 bytes)
+       @argv : Array(String) (8 bytes)
+       @stdin : IO+ (8 bytes)
+       @initialized : Bool (0 bytes)
+       @read_from_stdin : Bool (0 bytes)
+**** IO::Delimited
+     kind: class
+     size_in_bytes: 128
+     - instance_vars:
+       @closed : Bool (0 bytes)
+       @delimiter_buffer : Slice(UInt8) (16 bytes)
+       @active_delimiter_buffer : Slice(UInt8) (16 bytes)
+       @io : IO+ (8 bytes)
+       @read_delimiter : Slice(UInt8) (16 bytes)
+       @sync_close : Bool (0 bytes)
+       @finished : Bool (0 bytes)
+**** IO::FileDescriptor
+     kind: class
+     size_in_bytes: 224
+     - instance_vars:
+       @fd : Int32 (4 bytes)
+       @read_event : (Event::Event | Nil) (24 bytes)
+       @write_event : (Event::Event | Nil) (24 bytes)
+       @in_buffer_rem : Slice(UInt8) (16 bytes)
+       @out_count : Int32 (4 bytes)
+       @sync : Bool (0 bytes)
+       @flush_on_newline : Bool (0 bytes)
+       @in_buffer : (Pointer(UInt8) | Nil) (8 bytes)
+       @out_buffer : (Pointer(UInt8) | Nil) (8 bytes)
+       @read_timeout : (Time::Span | Nil) (24 bytes)
+       @write_timeout : (Time::Span | Nil) (24 bytes)
+       @readers : (Deque(Fiber) | Nil) (8 bytes)
+       @writers : (Deque(Fiber) | Nil) (8 bytes)
+       @read_timed_out : Bool (0 bytes)
+       @write_timed_out : Bool (0 bytes)
+       @closed : Bool (0 bytes)
+***** File
+      kind: class
+      size_in_bytes: 232
+      - instance_vars:
+        @path : String (8 bytes)
+**** IO::Hexdump
+     kind: class
+     size_in_bytes: 80
+     - instance_vars:
+       @io : IO+ (8 bytes)
+       @output : IO+ (8 bytes)
+       @read : Bool (0 bytes)
+       @write : Bool (0 bytes)
+**** IO::Memory
+     kind: class
+     size_in_bytes: 80
+     - instance_vars:
+       @buffer : Pointer(UInt8) (8 bytes)
+       @bytesize : Int32 (4 bytes)
+       @capacity : Int32 (4 bytes)
+       @pos : Int32 (4 bytes)
+       @closed : Bool (0 bytes)
+       @resizeable : Bool (0 bytes)
+       @writeable : Bool (0 bytes)
+**** IO::MultiWriter
+     kind: class
+     size_in_bytes: 72
+     - instance_vars:
+       @writers : Array(IO) (8 bytes)
+       @closed : Bool (0 bytes)
+       @sync_close : Bool (0 bytes)
+**** IO::Sized
+     kind: class
+     size_in_bytes: 88
+     - instance_vars:
+       @sync_close : Bool (0 bytes)
+       @read_remaining : UInt64 (8 bytes)
+       @closed : Bool (0 bytes)
+       @io : IO+ (8 bytes)
+**** IO::Stapled
+     kind: class
+     size_in_bytes: 80
+     - instance_vars:
+       @sync_close : Bool (0 bytes)
+       @closed : Bool (0 bytes)
+       @reader : IO+ (8 bytes)
+       @writer : IO+ (8 bytes)
+**** String::Builder
+     kind: class
+     size_in_bytes: 80
+     - instance_vars:
+       @bytesize : Int32 (4 bytes)
+       @capacity : Int32 (4 bytes)
+       @buffer : Pointer(UInt8) (8 bytes)
+       @finished : Bool (0 bytes)
+*** IO::Decoder
+    kind: class
+    size_in_bytes: 120
+    - instance_vars:
+      @out_slice : Slice(UInt8) (16 bytes)
+      @in_buffer : Pointer(UInt8) (8 bytes)
+      @encoding_options : IO::EncodingOptions (24 bytes)
+      @iconv : Iconv (16 bytes)
+      @buffer : Slice(UInt8) (16 bytes)
+      @in_buffer_left : UInt64 (8 bytes)
+      @out_buffer : Slice(UInt8) (16 bytes)
+      @closed : Bool (0 bytes)
+*** IO::Encoder
+    kind: class
+    size_in_bytes: 56
+    - instance_vars:
+      @encoding_options : IO::EncodingOptions (24 bytes)
+      @iconv : Iconv (16 bytes)
+      @closed : Bool (0 bytes)
+*** Indexable::IndexIterator(A)
+    kind: class
+    - instance_vars:
+      @array : @array
+      @index : @index
+*** Indexable::ItemIterator(A, T)
+    kind: class
+    - instance_vars:
+      @array : @array
+      @index : @index
+*** Indexable::ReverseItemIterator(A, T)
+    kind: class
+    - instance_vars:
+      @array : @array
+      @index : @index
+*** Int::DowntoIterator(T, N)
+    kind: class
+    - instance_vars:
+      @from : @from
+      @to : @to
+      @current : @current
+*** Int::TimesIterator(T)
+    kind: class
+    - instance_vars:
+      @n : @n
+      @index : @index
+*** Int::UptoIterator(T, N)
+    kind: class
+    - instance_vars:
+      @from : @from
+      @to : @to
+      @current : @current
+*** Iterator::Chain(I1, I2, T1, T2)
+    kind: class
+    - instance_vars:
+      @iterator1 : @iterator1
+      @iterator2 : @iterator2
+      @iterator1_consumed : @iterator1_consumed
+*** Iterator::Chunk(I, T, U)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @init : @init
+      @original_block : @original_block
+      @acc : @acc
+*** Iterator::CycleN(I, T, N)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @n : @n
+      @count : @count
+*** Iterator::First(I, T, N)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @n : @n
+      @original : @original
+*** Iterator::FlatMap(I0, T, I, F)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @func : @func
+      @nest_iterator : @nest_iterator
+      @stopped : @stopped
+*** Iterator::Skip(I, T, N)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @n : @n
+      @original : @original
+*** Iterator::SkipWhile(I, T, U)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @func : @func
+      @returned_false : @returned_false
+*** Iterator::Stop
+    kind: class
+    size_in_bytes: 4
+*** Iterator::TakeWhile(I, T, U)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @func : @func
+      @returned_false : @returned_false
+*** Iterator::WithIndex(I, T, O)
+    kind: class
+    - instance_vars:
+      @iterator : @iterator
+      @offset : @offset
+      @index : @index
+*** Mutex
+    kind: class
+    size_in_bytes: 32
+    - instance_vars:
+      @mutex_fiber : (Fiber | Nil) (8 bytes)
+      @lock_count : Int32 (4 bytes)
+      @queue : (Deque(Fiber) | Nil) (8 bytes)
+*** MyClass
+    kind: class
+    size_in_bytes: 8
+    - instance_vars:
+      @is_real : Bool (0 bytes)
+*** Number::StepIterator(T, L, B)
+    kind: class
+    - instance_vars:
+      @n : @n
+      @to : @to
+      @by : @by
+      @original : @original
+*** PrettyPrint
+    kind: class
+    size_in_bytes: 72
+    - instance_vars:
+      @output : IO+ (8 bytes)
+      @maxwidth : Int32 (4 bytes)
+      @newline : String (8 bytes)
+      @indent : Int32 (4 bytes)
+      @output_width : Int32 (4 bytes)
+      @buffer_width : Int32 (4 bytes)
+      @buffer : Deque(PrettyPrint::Breakable | PrettyPrint::Text) (8 bytes)
+      @group_stack : Array(PrettyPrint::Group) (8 bytes)
+      @group_queue : PrettyPrint::GroupQueue (8 bytes)
+*** PrettyPrint::Breakable
+    kind: class
+    size_in_bytes: 40
+    - instance_vars:
+      @indent : Int32 (4 bytes)
+      @group : PrettyPrint::Group (8 bytes)
+      @obj : String (8 bytes)
+      @width : Int32 (4 bytes)
+      @pp : PrettyPrint (8 bytes)
+*** PrettyPrint::Group
+    kind: class
+    size_in_bytes: 24
+    - instance_vars:
+      @depth : Int32 (4 bytes)
+      @breakables : Deque(PrettyPrint::Breakable) (8 bytes)
+      @break : Bool (0 bytes)
+*** PrettyPrint::GroupQueue
+    kind: class
+    size_in_bytes: 16
+    - instance_vars:
+      @queue : Array(Array(PrettyPrint::Group)) (8 bytes)
+*** PrettyPrint::Text
+    kind: class
+    size_in_bytes: 24
+    - instance_vars:
+      @objs : Array(String) (8 bytes)
+      @width : Int32 (4 bytes)
+*** Process
+    kind: class
+    size_in_bytes: 56
+    - instance_vars:
+      @pid : Int32 (4 bytes)
+      @input : (IO::FileDescriptor | Nil) (8 bytes)
+      @output : (IO::FileDescriptor | Nil) (8 bytes)
+      @error : (IO::FileDescriptor | Nil) (8 bytes)
+      @waitpid : Channel::Buffered(Int32) (8 bytes)
+      @wait_count : Int32 (4 bytes)
+      @channel : (Channel::Unbuffered(Exception | Nil) | Nil) (8 bytes)
+*** Process::Status
+    kind: class
+    size_in_bytes: 8
+    - instance_vars:
+      @exit_status : Int32 (4 bytes)
+*** Random::PCG32
+    kind: class
+    size_in_bytes: 24
+    - instance_vars:
+      @state : UInt64 (8 bytes)
+      @inc : UInt64 (8 bytes)
+*** Range::ItemIterator(B, E)
+    kind: class
+    - instance_vars:
+      @range : @range
+      @current : @current
+      @reached_end : @reached_end
+*** Range::ReverseIterator(B, E)
+    kind: class
+    - instance_vars:
+      @range : @range
+      @current : @current
+*** Range::StepIterator(R, B, N)
+    kind: class
+    - instance_vars:
+      @range : @range
+      @step : @step
+      @current : @current
+      @reached_end : @reached_end
+*** Regex
+    kind: class
+    size_in_bytes: 40
+    - instance_vars:
+      @options : Regex::Options (4 bytes)
+      @source : String (8 bytes)
+      @re : LibPCRE::Pcre (8 bytes)
+      @extra : LibPCRE::PcreExtra (8 bytes)
+      @captures : Int32 (4 bytes)
+*** Scheduler
+    kind: class
+    size_in_bytes: 4
+*** String
+    kind: class
+    size_in_bytes: 16
+    - instance_vars:
+      @bytesize : Int32 (4 bytes)
+      @length : Int32 (4 bytes)
+      @c : UInt8 (1 bytes)
+*** String::CharIterator
+    kind: class
+    size_in_bytes: 64
+    - instance_vars:
+      @reader : Char::Reader (48 bytes)
+      @end : Bool (0 bytes)
+*** String::LineIterator
+    kind: class
+    size_in_bytes: 32
+    - instance_vars:
+      @string : String (8 bytes)
+      @chomp : Bool (0 bytes)
+      @offset : Int32 (4 bytes)
+      @end : Bool (0 bytes)
+*** StringPool
+    kind: class
+    size_in_bytes: 32
+    - instance_vars:
+      @size : Int32 (4 bytes)
+      @capacity : Int32 (4 bytes)
+      @hashes : Pointer(UInt64) (8 bytes)
+      @values : Pointer(String) (8 bytes)
+*** Thread
+    kind: class
+    size_in_bytes: 64
+    - instance_vars:
+      @th : (UInt64 | Nil) (16 bytes)
+      @exception : (Exception | Nil) (8 bytes)
+      @detached : Bool (0 bytes)
+      @func : Proc(Nil) (16 bytes)
+      @current_fiber : Fiber (8 bytes)
+*** Thread::ConditionVariable
+    kind: class
+    size_in_bytes: 56
+    - instance_vars:
+      @cond : LibC::PthreadCondT (48 bytes)
+*** Thread::Mutex
+    kind: class
+    size_in_bytes: 48
+    - instance_vars:
+      @mutex : LibC::PthreadMutexT (40 bytes)
+*** Time::Location
+    kind: class
+    size_in_bytes: 64
+    - instance_vars:
+      @name : String (8 bytes)
+      @zones : Array(Time::Location::Zone) (8 bytes)
+      @cached_range : Tuple(Int64, Int64) (16 bytes)
+      @cached_zone : Time::Location::Zone (16 bytes)
+      @transitions : Array(Time::Location::ZoneTransition) (8 bytes)
+** Value
+   kind: struct
+   size_in_bytes: 0
+*** Enum
+    kind: struct
+    size_in_bytes: 0
+*** NamedTuple(T)
+    kind: struct
+*** Number
+    kind: struct
+    size_in_bytes: 0
+**** Float
+     kind: struct
+     size_in_bytes: 0
+**** Int
+     kind: struct
+     size_in_bytes: 0
+*** Pointer(T)
+    kind: struct
+*** Proc(T, R)
+    kind: struct
+*** StaticArray(T, N)
+    kind: struct
+    - instance_vars:
+      @buffer : @buffer
+*** Struct
+    kind: struct
+    size_in_bytes: 0
+**** Array::FlattenHelper(T)
+     kind: struct
+**** Atomic(T)
+     kind: struct
+     - instance_vars:
+       @value : @value
+**** CallStack
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @callstack : Array(Pointer(Void)) (8 bytes)
+       @backtrace : (Array(String) | Nil) (8 bytes)
+**** CallStack::RepeatedFrame
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @ip : Pointer(Void) (8 bytes)
+       @count : Int32 (4 bytes)
+**** Channel::ReceiveAction(C)
+     kind: struct
+     - instance_vars:
+       @channel : @channel
+**** Channel::SendAction(C, T)
+     kind: struct
+     - instance_vars:
+       @channel : @channel
+       @value : @value
+**** Char::Reader
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @string : String (8 bytes)
+       @current_char : Char (4 bytes)
+       @current_char_width : Int32 (4 bytes)
+       @pos : Int32 (4 bytes)
+       @error : (UInt8 | Nil) (16 bytes)
+       @end : Bool (0 bytes)
+**** Colorize::Color256
+     kind: struct
+     size_in_bytes: 1
+     - instance_vars:
+       @value : UInt8 (1 bytes)
+**** Colorize::ColorRGB
+     kind: struct
+     size_in_bytes: 3
+     - instance_vars:
+       @red : UInt8 (1 bytes)
+       @green : UInt8 (1 bytes)
+       @blue : UInt8 (1 bytes)
+**** Colorize::Object(T)
+     kind: struct
+     - instance_vars:
+       @fore : @fore
+       @back : @back
+       @object : @object
+       @mode : @mode
+       @enabled : @enabled
+**** Crystal::HashLiteral::Entry
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @key : Crystal::ASTNode+ (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Hasher
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @a : UInt64 (8 bytes)
+       @b : UInt64 (8 bytes)
+**** Crystal::NamedTupleLiteral::Entry
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @key : String (8 bytes)
+       @value : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Parser::ArgExtras
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @block_arg : (Crystal::Arg | Nil) (8 bytes)
+       @default_value : Bool (0 bytes)
+       @splat : Bool (0 bytes)
+       @double_splat : Bool (0 bytes)
+**** Crystal::Parser::CallArgs
+     kind: struct
+     size_in_bytes: 56
+     - instance_vars:
+       @args : (Array(Crystal::ASTNode) | Nil) (8 bytes)
+       @block : (Crystal::Block | Nil) (8 bytes)
+       @block_arg : (Crystal::ASTNode | Nil) (8 bytes)
+       @named_args : (Array(Crystal::NamedArgument) | Nil) (8 bytes)
+       @stopped_on_do_after_space : Bool (0 bytes)
+       @end_location : (Crystal::Location | Nil) (8 bytes)
+       @has_parentheses : Bool (0 bytes)
+**** Crystal::Parser::Piece
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @value : (Crystal::ASTNode | String) (8 bytes)
+       @line_number : Int32 (4 bytes)
+**** Crystal::Parser::Unclosed
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @name : String (8 bytes)
+       @location : Crystal::Location (8 bytes)
+**** Crystal::Select::When
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @condition : Crystal::ASTNode+ (8 bytes)
+       @body : Crystal::ASTNode+ (8 bytes)
+**** Crystal::Token::DelimiterState
+     kind: struct
+     size_in_bytes: 56
+     - instance_vars:
+       @kind : Symbol (4 bytes)
+       @nest : (Char | String) (16 bytes)
+       @end : (Char | String) (16 bytes)
+       @open_count : Int32 (4 bytes)
+       @heredoc_indent : Int32 (4 bytes)
+       @allow_escapes : Bool (0 bytes)
+**** Crystal::Token::MacroState
+     kind: struct
+     size_in_bytes: 88
+     - instance_vars:
+       @whitespace : Bool (0 bytes)
+       @nest : Int32 (4 bytes)
+       @control_nest : Int32 (4 bytes)
+       @delimiter_state : (Crystal::Token::DelimiterState | Nil) (64 bytes)
+       @beginning_of_line : Bool (0 bytes)
+       @yields : Bool (0 bytes)
+       @comment : Bool (0 bytes)
+**** Debug::DWARF::Abbrev
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @code : UInt32 (4 bytes)
+       @tag : Debug::DWARF::TAG (4 bytes)
+       @attributes : Array(Debug::DWARF::Abbrev::Attribute) (8 bytes)
+       @children : Bool (0 bytes)
+**** Debug::DWARF::Abbrev::Attribute
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @at : Debug::DWARF::AT (4 bytes)
+       @form : Debug::DWARF::FORM (4 bytes)
+**** Debug::DWARF::Info
+     kind: struct
+     size_in_bytes: 88
+     - instance_vars:
+       @unit_length : (UInt32 | UInt64) (16 bytes)
+       @version : UInt16 (2 bytes)
+       @debug_abbrev_offset : (UInt32 | UInt64) (16 bytes)
+       @address_size : UInt8 (1 bytes)
+       @abbreviations : (Array(Debug::DWARF::Abbrev) | Nil) (8 bytes)
+       @dwarf64 : Bool (0 bytes)
+       @offset : Int64 (8 bytes)
+       @ref_offset : Int64 (8 bytes)
+       @io : IO::FileDescriptor+ (8 bytes)
+**** Debug::DWARF::LineNumbers
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @matrix : Array(Array(Debug::DWARF::LineNumbers::Row)) (8 bytes)
+       @directories : Array(String) (8 bytes)
+       @files : Array(String) (8 bytes)
+       @offset : Int64 (8 bytes)
+       @current_sequence_matrix : (Array(Debug::DWARF::LineNumbers::Row) | Nil) (8 bytes)
+       @io : IO::FileDescriptor+ (8 bytes)
+**** Debug::DWARF::LineNumbers::Register
+     kind: struct
+     size_in_bytes: 40
+     - instance_vars:
+       @address : UInt64 (8 bytes)
+       @op_index : UInt32 (4 bytes)
+       @file : UInt32 (4 bytes)
+       @line : UInt32 (4 bytes)
+       @column : UInt32 (4 bytes)
+       @is_stmt : Bool (0 bytes)
+       @basic_block : Bool (0 bytes)
+       @end_sequence : Bool (0 bytes)
+       @prologue_end : Bool (0 bytes)
+       @epilogue_begin : Bool (0 bytes)
+       @isa : UInt32 (4 bytes)
+       @discriminator : UInt32 (4 bytes)
+**** Debug::DWARF::LineNumbers::Row
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @address : UInt64 (8 bytes)
+       @op_index : UInt32 (4 bytes)
+       @directory : Int32 (4 bytes)
+       @file : Int32 (4 bytes)
+       @line : Int32 (4 bytes)
+       @column : Int32 (4 bytes)
+       @end_sequence : Bool (0 bytes)
+**** Debug::DWARF::LineNumbers::Sequence
+     kind: struct
+     size_in_bytes: 176
+     - instance_vars:
+       @offset : (Int64 | Nil) (16 bytes)
+       @unit_length : (UInt32 | Nil) (16 bytes)
+       @version : (UInt16 | Nil) (16 bytes)
+       @header_length : (UInt32 | Nil) (16 bytes)
+       @minimum_instruction_length : (UInt8 | Nil) (16 bytes)
+       @maximum_operations_per_instruction : UInt8 (1 bytes)
+       @default_is_stmt : (Bool | Nil) (16 bytes)
+       @line_base : (Int8 | Nil) (16 bytes)
+       @line_range : (UInt8 | Nil) (16 bytes)
+       @opcode_base : (UInt8 | Nil) (16 bytes)
+       @include_directories : Array(String) (8 bytes)
+       @file_names : Array(Tuple(String, Int32, Int32, Int32)) (8 bytes)
+       @standard_opcode_lengths : Array(UInt8) (8 bytes)
+**** Debug::DWARF::Strings
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @io : IO::FileDescriptor+ (8 bytes)
+       @offset : (UInt32 | UInt64) (16 bytes)
+**** Debug::ELF
+     kind: struct
+     size_in_bytes: 248
+     - instance_vars:
+       @ident : (Debug::ELF::Ident | Nil) (24 bytes)
+       @type : (Debug::ELF::Type | Nil) (16 bytes)
+       @machine : (Debug::ELF::Machine | Nil) (16 bytes)
+       @version : (UInt32 | Nil) (16 bytes)
+       @entry : (UInt32 | UInt64 | Nil) (16 bytes)
+       @phoff : (UInt32 | UInt64 | Nil) (16 bytes)
+       @shoff : (UInt32 | UInt64 | Nil) (16 bytes)
+       @flags : (UInt32 | Nil) (16 bytes)
+       @ehsize : (UInt16 | Nil) (16 bytes)
+       @phentsize : (UInt16 | Nil) (16 bytes)
+       @phnum : (UInt16 | Nil) (16 bytes)
+       @shentsize : (UInt16 | Nil) (16 bytes)
+       @shnum : (UInt16 | Nil) (16 bytes)
+       @shstrndx : (UInt16 | Nil) (16 bytes)
+       @io : IO::FileDescriptor+ (8 bytes)
+       @sections : (Array(Debug::ELF::SectionHeader) | Nil) (8 bytes)
+**** Debug::ELF::Ident
+     kind: struct
+     size_in_bytes: 12
+     - instance_vars:
+       @klass : Debug::ELF::Klass (1 bytes)
+       @data : Debug::ELF::Endianness (4 bytes)
+       @version : UInt8 (1 bytes)
+       @osabi : Debug::ELF::OSABI (1 bytes)
+       @abiversion : UInt8 (1 bytes)
+**** Debug::ELF::SectionHeader
+     kind: struct
+     size_in_bytes: 160
+     - instance_vars:
+       @name : (UInt32 | Nil) (16 bytes)
+       @type : (Debug::ELF::SectionHeader::Type | Nil) (16 bytes)
+       @flags : (Debug::ELF::SectionHeader::Flags | Nil) (16 bytes)
+       @addr : (UInt32 | UInt64 | Nil) (16 bytes)
+       @offset : (UInt32 | UInt64 | Nil) (16 bytes)
+       @size : (UInt32 | UInt64 | Nil) (16 bytes)
+       @link : (UInt32 | Nil) (16 bytes)
+       @info : (UInt32 | Nil) (16 bytes)
+       @addralign : (UInt32 | UInt64 | Nil) (16 bytes)
+       @entsize : (UInt32 | UInt64 | Nil) (16 bytes)
+**** Dir::ChildIterator
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @dir : Dir (8 bytes)
+**** Dir::EntryIterator
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @dir : Dir (8 bytes)
+**** Dir::Globber::ConstantDirectory
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @path : String (8 bytes)
+**** Dir::Globber::ConstantEntry
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @path : String (8 bytes)
+**** Dir::Globber::DirectoriesOnly
+     kind: struct
+     size_in_bytes: 0
+**** Dir::Globber::DirectoryMatch
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @pattern : String (8 bytes)
+**** Dir::Globber::EntryMatch
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @pattern : String (8 bytes)
+**** Dir::Globber::RecursiveDirectories
+     kind: struct
+     size_in_bytes: 0
+**** Dir::Globber::RootDirectory
+     kind: struct
+     size_in_bytes: 0
+**** Enumerable::Chunk::Accumulator(T, U)
+     kind: struct
+     - instance_vars:
+       @data : @data
+       @reuse : @reuse
+       @key : @key
+       @initialized : @initialized
+**** Enumerable::Chunk::Alone
+     kind: struct
+     size_in_bytes: 0
+**** Enumerable::Chunk::Drop
+     kind: struct
+     size_in_bytes: 0
+**** Event::Base
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @base : LibEvent2::EventBase (8 bytes)
+**** Event::DnsBase
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @dns_base : LibEvent2::DnsBase (8 bytes)
+**** Event::DnsBase::GetAddrInfoRequest
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @request : LibEvent2::DnsGetAddrinfoRequest (8 bytes)
+**** Event::Event
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @event : LibEvent2::Event (8 bytes)
+       @freed : Bool (0 bytes)
+**** File::Info
+     kind: struct
+     size_in_bytes: 0
+***** Crystal::System::FileInfo
+      kind: struct
+      size_in_bytes: 144
+      - instance_vars:
+        @stat : LibC::Stat (144 bytes)
+**** Float::Printer::CachedPowers::Power
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @significand : UInt64 (8 bytes)
+       @binary_exp : Int16 (2 bytes)
+       @decimal_exp : Int16 (2 bytes)
+**** Float::Printer::DiyFP
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @frac : UInt64 (8 bytes)
+       @exp : Int32 (4 bytes)
+**** GC::Stats
+     kind: struct
+     size_in_bytes: 40
+     - instance_vars:
+       @heap_size : UInt64 (8 bytes)
+       @free_bytes : UInt64 (8 bytes)
+       @unmapped_bytes : UInt64 (8 bytes)
+       @bytes_since_gc : UInt64 (8 bytes)
+       @total_bytes : UInt64 (8 bytes)
+**** IO::ByteIterator(I)
+     kind: struct
+     - instance_vars:
+       @io : @io
+**** IO::CharIterator(I)
+     kind: struct
+     - instance_vars:
+       @io : @io
+**** IO::EncodingOptions
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @name : String (8 bytes)
+       @invalid : (Symbol | Nil) (16 bytes)
+**** IO::LineIterator(I, A, N)
+     kind: struct
+     - instance_vars:
+       @io : @io
+       @args : @args
+       @nargs : @nargs
+**** Iconv
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @skip_invalid : Bool (0 bytes)
+       @iconv : LibC::IconvT (8 bytes)
+**** Iterator::CompactMap(I, T, U)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @func : @func
+**** Iterator::Cons(I, T, N)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @n : @n
+       @values : @values
+       @reuse : @reuse
+**** Iterator::Cycle(I, T)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+**** Iterator::Flatten(I, T)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @stopped : @stopped
+       @generators : @generators
+**** Iterator::InGroupsOf(I, T, N, U)
+     kind: struct
+     - instance_vars:
+       @reuse : @reuse
+       @iterator : @iterator
+       @size : @size
+       @filled_up_with : @filled_up_with
+**** Iterator::Map(I, T, U)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @func : @func
+**** Iterator::Reject(I, T, B)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @func : @func
+**** Iterator::Select(I, T, B)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @func : @func
+**** Iterator::Singleton(T)
+     kind: struct
+     - instance_vars:
+       @element : @element
+**** Iterator::SingletonProc(T)
+     kind: struct
+     - instance_vars:
+       @proc : @proc
+**** Iterator::Slice(I, T, N)
+     kind: struct
+     - instance_vars:
+       @reuse : @reuse
+       @iterator : @iterator
+       @n : @n
+**** Iterator::Step(I, T, N)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @by : @by
+**** Iterator::Tap(I, T)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @proc : @proc
+**** Iterator::Uniq(I, T, U)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @func : @func
+       @hash : @hash
+**** Iterator::WithObject(I, T, O)
+     kind: struct
+     - instance_vars:
+       @iterator : @iterator
+       @object : @object
+**** Iterator::Zip(I1, I2, T1, T2)
+     kind: struct
+     - instance_vars:
+       @iterator1 : @iterator1
+       @iterator2 : @iterator2
+**** LEBReader
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @data : Pointer(UInt8) (8 bytes)
+**** LibC::Addrinfo
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @ai_flags : Int32 (4 bytes)
+       @ai_family : Int32 (4 bytes)
+       @ai_socktype : Int32 (4 bytes)
+       @ai_protocol : Int32 (4 bytes)
+       @ai_addrlen : UInt32 (4 bytes)
+       @ai_addr : Pointer(LibC::Sockaddr) (8 bytes)
+       @ai_canonname : Pointer(UInt8) (8 bytes)
+       @ai_next : Pointer(LibC::Addrinfo) (8 bytes)
+**** LibC::Dirent
+     kind: struct
+     size_in_bytes: 280
+     - instance_vars:
+       @d_ino : UInt64 (8 bytes)
+       @d_off : Int64 (8 bytes)
+       @d_reclen : UInt16 (2 bytes)
+       @d_type : UInt8 (1 bytes)
+       @d_name : StaticArray(UInt8, 256) (256 bytes)
+**** LibC::DivT
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @quot : Int32 (4 bytes)
+       @rem : Int32 (4 bytes)
+**** LibC::DlInfo
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @dli_fname : Pointer(UInt8) (8 bytes)
+       @dli_fbase : Pointer(Void) (8 bytes)
+       @dli_sname : Pointer(UInt8) (8 bytes)
+       @dli_saddr : Pointer(Void) (8 bytes)
+**** LibC::Flock
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @l_type : Int16 (2 bytes)
+       @l_whence : Int16 (2 bytes)
+       @l_start : Int64 (8 bytes)
+       @l_len : Int64 (8 bytes)
+       @l_pid : Int32 (4 bytes)
+**** LibC::In6Addr
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @__in6_u : LibC::In6AddrIn6U (16 bytes)
+**** LibC::In6AddrIn6U
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @__u6_addr8 : StaticArray(UInt8, 16) (16 bytes)
+       @__u6_addr16 : StaticArray(UInt16, 8) (16 bytes)
+       @__u6_addr32 : StaticArray(UInt32, 4) (16 bytes)
+**** LibC::InAddr
+     kind: struct
+     size_in_bytes: 4
+     - instance_vars:
+       @s_addr : UInt32 (4 bytes)
+**** LibC::Linger
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @l_onoff : Int32 (4 bytes)
+       @l_linger : Int32 (4 bytes)
+**** LibC::PthreadAttrT
+     kind: struct
+     size_in_bytes: 56
+     - instance_vars:
+       @__size : StaticArray(UInt8, 56) (56 bytes)
+       @__align : Int64 (8 bytes)
+**** LibC::PthreadCondT
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @__data : LibC::PthreadCondTData (48 bytes)
+       @__size : StaticArray(UInt8, 48) (48 bytes)
+       @__align : Int64 (8 bytes)
+**** LibC::PthreadCondTData
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @__lock : Int32 (4 bytes)
+       @__futex : UInt32 (4 bytes)
+       @__total_seq : UInt64 (8 bytes)
+       @__wakeup_seq : UInt64 (8 bytes)
+       @__woken_seq : UInt64 (8 bytes)
+       @__mutex : Pointer(Void) (8 bytes)
+       @__nwaiters : UInt32 (4 bytes)
+       @__broadcast_seq : UInt32 (4 bytes)
+**** LibC::PthreadCondattrT
+     kind: struct
+     size_in_bytes: 4
+     - instance_vars:
+       @__size : StaticArray(UInt8, 4) (4 bytes)
+       @__align : Int32 (4 bytes)
+**** LibC::PthreadMutexT
+     kind: struct
+     size_in_bytes: 40
+     - instance_vars:
+       @__data : Pointer(Void) (8 bytes)
+       @__size : StaticArray(UInt8, 40) (40 bytes)
+       @__align : Int64 (8 bytes)
+**** LibC::PthreadMutexattrT
+     kind: struct
+     size_in_bytes: 4
+     - instance_vars:
+       @__size : StaticArray(UInt8, 4) (4 bytes)
+       @__align : Int32 (4 bytes)
+**** LibC::Sockaddr
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @sa_family : UInt16 (2 bytes)
+       @sa_data : StaticArray(UInt8, 14) (14 bytes)
+**** LibC::SockaddrIn
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @sin_family : UInt16 (2 bytes)
+       @sin_port : UInt16 (2 bytes)
+       @sin_addr : LibC::InAddr (4 bytes)
+       @sin_zero : StaticArray(UInt8, 8) (8 bytes)
+**** LibC::SockaddrIn6
+     kind: struct
+     size_in_bytes: 28
+     - instance_vars:
+       @sin6_family : UInt16 (2 bytes)
+       @sin6_port : UInt16 (2 bytes)
+       @sin6_flowinfo : UInt32 (4 bytes)
+       @sin6_addr : LibC::In6Addr (16 bytes)
+       @sin6_scope_id : UInt32 (4 bytes)
+**** LibC::SockaddrStorage
+     kind: struct
+     size_in_bytes: 128
+     - instance_vars:
+       @ss_family : UInt16 (2 bytes)
+       @__ss_align : UInt64 (8 bytes)
+       @__ss_padding : StaticArray(UInt8, 112) (112 bytes)
+**** LibC::Stat
+     kind: struct
+     size_in_bytes: 144
+     - instance_vars:
+       @st_dev : UInt64 (8 bytes)
+       @st_ino : UInt64 (8 bytes)
+       @st_nlink : UInt64 (8 bytes)
+       @st_mode : UInt32 (4 bytes)
+       @st_uid : UInt32 (4 bytes)
+       @st_gid : UInt32 (4 bytes)
+       @__pad0 : Int32 (4 bytes)
+       @st_rdev : UInt64 (8 bytes)
+       @st_size : Int64 (8 bytes)
+       @st_blksize : Int64 (8 bytes)
+       @st_blocks : Int64 (8 bytes)
+       @st_atim : LibC::Timespec (16 bytes)
+       @st_mtim : LibC::Timespec (16 bytes)
+       @st_ctim : LibC::Timespec (16 bytes)
+       @__glibc_reserved : StaticArray(Int64, 3) (24 bytes)
+**** LibC::Termios
+     kind: struct
+     size_in_bytes: 60
+     - instance_vars:
+       @c_iflag : UInt32 (4 bytes)
+       @c_oflag : UInt32 (4 bytes)
+       @c_cflag : UInt32 (4 bytes)
+       @c_lflag : UInt32 (4 bytes)
+       @c_line : UInt8 (1 bytes)
+       @c_cc : StaticArray(UInt8, 32) (32 bytes)
+       @c_ispeed : UInt32 (4 bytes)
+       @c_ospeed : UInt32 (4 bytes)
+**** LibC::Timespec
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @tv_sec : Int64 (8 bytes)
+       @tv_nsec : Int64 (8 bytes)
+**** LibC::Timeval
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @tv_sec : Int64 (8 bytes)
+       @tv_usec : Int64 (8 bytes)
+**** LibC::Timezone
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @tz_minuteswest : Int32 (4 bytes)
+       @tz_dsttime : Int32 (4 bytes)
+**** LibC::Tm
+     kind: struct
+     size_in_bytes: 56
+     - instance_vars:
+       @tm_sec : Int32 (4 bytes)
+       @tm_min : Int32 (4 bytes)
+       @tm_hour : Int32 (4 bytes)
+       @tm_mday : Int32 (4 bytes)
+       @tm_mon : Int32 (4 bytes)
+       @tm_year : Int32 (4 bytes)
+       @tm_wday : Int32 (4 bytes)
+       @tm_yday : Int32 (4 bytes)
+       @tm_isdst : Int32 (4 bytes)
+       @tm_gmtoff : Int64 (8 bytes)
+       @tm_zone : Pointer(UInt8) (8 bytes)
+**** LibC::Tms
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @tms_utime : Int64 (8 bytes)
+       @tms_stime : Int64 (8 bytes)
+       @tms_cutime : Int64 (8 bytes)
+       @tms_cstime : Int64 (8 bytes)
+**** LibC::VaListTag
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @gp_offset : UInt32 (4 bytes)
+       @fp_offset : UInt32 (4 bytes)
+       @overflow_arg_area : Pointer(Void) (8 bytes)
+       @reg_save_area : Pointer(Void) (8 bytes)
+**** LibUnwind::Exception
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @exception_class : UInt64 (8 bytes)
+       @exception_cleanup : UInt64 (8 bytes)
+       @private1 : UInt64 (8 bytes)
+       @private2 : UInt64 (8 bytes)
+       @exception_object : UInt64 (8 bytes)
+       @exception_type_id : Int32 (4 bytes)
+**** Pointer::Appender(T)
+     kind: struct
+     - instance_vars:
+       @pointer : @pointer
+       @start : @start
+**** Process::Tms
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @utime : Float64 (8 bytes)
+       @stime : Float64 (8 bytes)
+       @cutime : Float64 (8 bytes)
+       @cstime : Float64 (8 bytes)
+**** Range(B, E)
+     kind: struct
+     - instance_vars:
+       @begin : @begin
+       @end : @end
+       @exclusive : @exclusive
+**** Reflect(X)
+     kind: struct
+**** Regex::MatchData
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @regex : Regex (8 bytes)
+       @group_size : Int32 (4 bytes)
+       @string : String (8 bytes)
+       @code : LibPCRE::Pcre (8 bytes)
+       @pos : Int32 (4 bytes)
+       @ovector : Pointer(Int32) (8 bytes)
+**** Set(T)
+     kind: struct
+     - instance_vars:
+       @hash : @hash
+**** Slice(T)
+     kind: struct
+     - instance_vars:
+       @size : @size
+       @read_only : @read_only
+       @pointer : @pointer
+**** String::Formatter(A)
+     kind: struct
+     - instance_vars:
+       @format_buf : @format_buf
+       @temp_buf : @temp_buf
+       @args : @args
+       @io : @io
+       @reader : @reader
+       @arg_index : @arg_index
+       @temp_buf_len : @temp_buf_len
+       @format_buf_len : @format_buf_len
+**** String::Formatter::Flags
+     kind: struct
+     size_in_bytes: 48
+     - instance_vars:
+       @space : Bool (0 bytes)
+       @sharp : Bool (0 bytes)
+       @plus : Bool (0 bytes)
+       @minus : Bool (0 bytes)
+       @zero : Bool (0 bytes)
+       @base : Int32 (4 bytes)
+       @width : Int32 (4 bytes)
+       @width_size : Int32 (4 bytes)
+       @type : Char (4 bytes)
+       @precision : (Int32 | Nil) (16 bytes)
+       @precision_size : Int32 (4 bytes)
+**** String::ToU64Info
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @value : UInt64 (8 bytes)
+       @negative : Bool (0 bytes)
+       @invalid : Bool (0 bytes)
+**** Time
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @seconds : Int64 (8 bytes)
+       @nanoseconds : Int32 (4 bytes)
+       @location : Time::Location (8 bytes)
+**** Time::Format
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @pattern : String (8 bytes)
+       @location : (Time::Location | Nil) (8 bytes)
+**** Time::Format::Formatter
+     kind: struct
+     size_in_bytes: 32
+     - instance_vars:
+       @io : IO+ (8 bytes)
+       @time : Time (24 bytes)
+**** Time::Format::Parser
+     kind: struct
+     size_in_bytes: 112
+     - instance_vars:
+       @epoch : (Int64 | Nil) (16 bytes)
+       @location : (Time::Location | Nil) (8 bytes)
+       @reader : Char::Reader (48 bytes)
+       @year : Int32 (4 bytes)
+       @month : Int32 (4 bytes)
+       @day : Int32 (4 bytes)
+       @hour : Int32 (4 bytes)
+       @minute : Int32 (4 bytes)
+       @second : Int32 (4 bytes)
+       @nanosecond : Int32 (4 bytes)
+       @pm : Bool (0 bytes)
+       @nanosecond_offset : Int64 (8 bytes)
+**** Time::Location::Zone
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @offset : Int32 (4 bytes)
+       @dst : Bool (0 bytes)
+       @name : (String | Nil) (8 bytes)
+**** Time::Location::ZoneTransition
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @when : Int64 (8 bytes)
+       @index : UInt8 (1 bytes)
+       @standard : Bool (0 bytes)
+       @utc : Bool (0 bytes)
+**** Time::MonthSpan
+     kind: struct
+     size_in_bytes: 8
+     - instance_vars:
+       @value : Int64 (8 bytes)
+**** Time::Span
+     kind: struct
+     size_in_bytes: 16
+     - instance_vars:
+       @seconds : Int64 (8 bytes)
+       @nanoseconds : Int32 (4 bytes)
+**** VaList
+     kind: struct
+     size_in_bytes: 24
+     - instance_vars:
+       @to_unsafe : LibC::VaList (24 bytes)
+*** Tuple(T)
+    kind: struct
+*** Union(T)
+    kind: struct
